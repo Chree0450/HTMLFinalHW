@@ -17,7 +17,7 @@
 	<script src="https://www.gstatic.com/charts/loader.js"></script>
 	
 	<script>
-		
+		/*
 		// https://developers.google.com/chart/interactive/docs/quick_start
 		// Load the Visualization API and the corechart package.
 		google.charts.load('current', {'packages':['corechart']});
@@ -37,8 +37,10 @@
 		  query.send(processSheetsData);
 		}	
 		
-	
+	*/
 	</script>
+
+
 	
   </head>
 
@@ -57,39 +59,44 @@
       </div>
     </nav>
     
+	
+		<div class="row" id="demo">
 
-    <div class="row" id="demo">
-
+		</div>
+		<div style="text-align:center">
+	<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1dn13gu4rBfG9WLzx6DqjqgVuBaMAqCUP&ehbc=2E312F" width="80%" height="500" align="center"></iframe>
     </div>
-
-    
     
     <script>
-		
+		/*
 
 		function processSheetsData(response) {
 		
 		  var data = response.getDataTable();
 		  var columns = data.getNumberOfColumns();
 		  var rows = data.getNumberOfRows();
-		
-		  let text = "";
-		  let img = ["https://static.popdaily.com.tw/u/202105/c2687028-6f56-49a0-ad57-01f2bb37fe01.png",];
+		*/
+		  let text = '<div class="col s0 m0 l1"></div>';
+		  let img = ["https://yummyyummy.tw/wp-content/uploads/2021/10/20211028104717_40.jpg",
+					"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGh4cViZzD2QhLuJ4EIDBeh3vNHhRfARyojw&usqp=CAU",
+					"https://www.popdaily.com.tw/shaper/u/202008/d5c55387-ff5e-4c97-bc18-d0db7f4a35c1.jpg?resize-w=800",
+					"https://i.imgur.com/NqMlvgB.jpg",
+					"https://static.popdaily.com.tw/u/202105/c2687028-6f56-49a0-ad57-01f2bb37fe01.png",		  
+		  ];
 		  let name = ["臺北市","北部","中部","南部","東部"];
 		
       
       for (i = 0; i < img.length; i++) {
-        text += '<div class="col s10 m5 l2">';
+        text += '<div class="col s12 m6 l2">';
         text += ' <div class="card">';
         text += '  <div class="card-image">';
         text += '    <img src="'+img[i]+'" width="100%">';
         text += '  </div>';
         text += '  <div class="card-content">';
         text += '    <span class="card-title" id="card title">' + name[i] + '</span>';
-        text += '   <p>'+content[i]+'</p>';
         text += '  </div>';
         text += '  <div class="card-action">';
-		text += '    <a href="Introduce.html?id=' + i + '" style="color:'+link_color[i]+';">More</a>';
+		text += '    <a href="Introduce.html?id=' + i + '">More</a>';
         text += '  </div>';
         text += ' </div>';
         text += '</div>';
@@ -97,7 +104,7 @@
       }
       
       document.getElementById("demo").innerHTML = text;
-     }
+     /*}*/
     </script>
 
     
@@ -129,7 +136,7 @@
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2021 Copyright 
+			Copyright © 2021
             </div>
           </div>
     </footer>

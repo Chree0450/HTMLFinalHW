@@ -39,7 +39,14 @@
 		
 
 	</script>
-
+	<style>
+		.iris {
+			background-image: url("");
+			background-repeat: no-repeat;
+			height: 100vh;
+			background-size: cover;
+		}
+	</style>
 
 	
   </head>
@@ -53,13 +60,17 @@
         </ul>
       </div>
     </nav>
-    
-		<div style="text-align:center">
-			<div class="row" id="demo"></div>
+    <div class = "iris">
+		<div class = "card transparent z-depth-5">
+
+			<div style="text-align:center">
+				<div class="row" id="demo"></div>
+			
+				<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1dn13gu4rBfG9WLzx6DqjqgVuBaMAqCUP&ehbc=2E312F" width="80%" height="500" align="center"></iframe>
+			</div>
 		
-			<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1dn13gu4rBfG9WLzx6DqjqgVuBaMAqCUP&ehbc=2E312F" width="80%" height="500" align="center"></iframe>
 		</div>
-    
+	</div>
     <script>
 
 		function processSheetsData(response) {

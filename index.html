@@ -74,22 +74,8 @@
 		  var rows = data.getNumberOfRows();
 		
 		  let text = "";
-		  let img = [];
-		  let name = [];
-		  let title_color = [];
-		  
-		  let link_color = [];
-		  
-		  let content = [];
-
-		  for (var r=0 ; r<rows ; r++) {
-			img[r]=data.getFormattedValue(r,0);
-			name[r]=data.getFormattedValue(r,1);
-			title_color[r]=data.getFormattedValue(r,2);
-			  
-			link_color[r]=data.getFormattedValue(r,3);
-			content[r]=data.getFormattedValue(r,4);
-		}
+		  let img = ["https://static.popdaily.com.tw/u/202105/c2687028-6f56-49a0-ad57-01f2bb37fe01.png",];
+		  let name = ["臺北市","北部","中部","南部","東部"];
 		
       
       for (i = 0; i < img.length; i++) {
@@ -99,7 +85,7 @@
         text += '    <img src="'+img[i]+'" width="100%">';
         text += '  </div>';
         text += '  <div class="card-content">';
-        text += '    <span class="card-title ' + title_color[i] + '" id="card title">' + name[i] + '</span>';
+        text += '    <span class="card-title" id="card title">' + name[i] + '</span>';
         text += '   <p>'+content[i]+'</p>';
         text += '  </div>';
         text += '  <div class="card-action">';

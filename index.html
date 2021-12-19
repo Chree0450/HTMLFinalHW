@@ -17,7 +17,7 @@
 	<script src="https://www.gstatic.com/charts/loader.js"></script>
 	
 	<script>
-		/*
+
 		// https://developers.google.com/chart/interactive/docs/quick_start
 		// Load the Visualization API and the corechart package.
 		google.charts.load('current', {'packages':['corechart']});
@@ -31,13 +31,13 @@
 		  // 然後讓程式讀取 https://docs.google.com/spreadsheets/d/瀏覽器網址列上的網址擷取序號部分/gviz/tq?sheet=工作表名稱
 		  // 也就是將下列的 1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk 更換成自己的檔案序號，以及最後部分指讀取哪個工作表。
 		  var url =
-			'https://docs.google.com/spreadsheets/d/1NVPHUjiyzm9LVau9UQ18ySfnc2GeHsMl7Zn5v8KzvXo/gviz/tq?sheet=工作表1';
+			'https://docs.google.com/spreadsheets/d/1FAamxwp4tw8ezYj2HX_D_wX599GHDn_44rq8hVwICj0/gviz/tq?sheet=工作表1';
 		  var query = new google.visualization.Query(url);
 		  query.setQuery('select *');
 		  query.send(processSheetsData);
 		}	
 		
-	*/
+
 	</script>
 
 
@@ -68,14 +68,13 @@
     </div>
     
     <script>
-		/*
 
 		function processSheetsData(response) {
 		
 		  var data = response.getDataTable();
 		  var columns = data.getNumberOfColumns();
 		  var rows = data.getNumberOfRows();
-		*/
+
 		  let text = '<div class="col s0 m0 l1"></div>';
 		  let img = ["https://yummyyummy.tw/wp-content/uploads/2021/10/20211028104717_40.jpg",
 					"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGh4cViZzD2QhLuJ4EIDBeh3vNHhRfARyojw&usqp=CAU",
@@ -84,6 +83,12 @@
 					"https://static.popdaily.com.tw/u/202105/c2687028-6f56-49a0-ad57-01f2bb37fe01.png",		  
 		  ];
 		  let name = ["臺北市","北部","中部","南部","東部"];
+
+
+		  for (var r=0 ; r<rows ; r++) {
+			img[r]=data.getFormattedValue(r,0);
+			name[r]=data.getFormattedValue(r,1);
+		}
 		
       
       for (i = 0; i < img.length; i++) {
@@ -104,7 +109,7 @@
       }
       
       document.getElementById("demo").innerHTML = text;
-     /*}*/
+     }
     </script>
 
     

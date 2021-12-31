@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html>
+<html lang=“zh-Hant-TW”>
 
 <head>
   <!--Import Google Icon Font-->
@@ -74,6 +74,11 @@
 				<a href="#" class="brand-logo center" style="font-size:60px">拉麵</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 				  <li><a href="./index.html">HOME</a></li>
+				  <li><a href="./index.html">台北市</a></li>
+				  <li><a href="./index.html">北部</a></li>
+				  <li><a href="./index.html">中部</a></li>
+				  <li><a href="./index.html">南部</a></li>
+				  <li><a href="./index.html">東部</a></li>
 				</ul>
 			  </div>
 			</nav>
@@ -82,9 +87,6 @@
 	
 		<div class = "card transparent z-depth-5">
 			<div class="row" id="demo"></div>
-			<div style="text-align:center">
-				<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1dn13gu4rBfG9WLzx6DqjqgVuBaMAqCUP&ehbc=2E312F" width="80%" height="500" align="center"></iframe>
-			</div>
 		</div>
 			
 		
@@ -126,42 +128,28 @@
 	
 	function processSheetsData(response) {
 		
-		  var data = response.getDataTable();
+		var data = response.getDataTable();
+		var columns = data.getNumberOfColumns();
+		var rows = data.getNumberOfRows();
 
 		
-		  let text = "";
+		let text = "";
 
-		  var info_content=[];
+		var info_content=[];
 		 
 			
-			var X = decodeURIComponent(GetUrlVar('id'));
-			var i = Number(X);
-			/*
-			for(var i=0;i<=11;i++){
-			img=data.getFormattedValue(i,0);
-			birthday=data.getFormattedValue(i,1);
-			first_delivery=data.getFormattedValue(i,2);
-			height=data.getFormattedValue(i,3);
-			unit=data.getFormattedValue(i,4);
-			fans_name=data.getFormattedValue(i,5);
-			img_size=data.getFormattedValue(i,6);
-			side_size=data.getFormattedValue(i,7);
-			channel_link=data.getFormattedValue(i,8);
-			twitter_link=data.getFormattedValue(i,9);
-			BColor=data.getFormattedValue(i,10);
-			TitleColor=data.getFormattedValue(i,11);
-		}
-		*/
-		for(var r=0 ; r<=11 ; r++){
-			info_content[r]=data.getFormattedValue(i,r);
+		var X = decodeURIComponent(GetUrlVar('id'));
+		var i = Number(X);
+		text="";
+		for(var r=0 ; r<=rows ; r++){
+			text+='<p>'+data.getFormattedValue(r,i)+'</p>';
 		}
       
 
 	
-    pic="";
-    pic += "<img src='" + info_content[0] + "' width='"+info_content[6]+"%' vspace='100' hspace='"+info_content[7]+"'/>"; 
+   
     
-    text="";
+    
     text += '<br><p>誕生日 : '+info_content[1]+'</p>';
     text += '   <p>初配信日 : '+info_content[2]+'</p>';
     text += '   <p>身長 : '+info_content[3]+'㎝</p>';

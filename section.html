@@ -53,7 +53,7 @@
 		  // 然後讓程式讀取 https://docs.google.com/spreadsheets/d/瀏覽器網址列上的網址擷取序號部分/gviz/tq?sheet=工作表名稱
 		  // 也就是將下列的 1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk 更換成自己的檔案序號，以及最後部分指讀取哪個工作表。
 		  var url =
-			'https://docs.google.com/spreadsheets/d/1L6Jn3A9W5CQP6CRmhFF2ZzJB1VW_xWm9OCwe31TomVk/gviz/tq?sheet=工作表1';
+			'https://docs.google.com/spreadsheets/d/1MeInYW8_W3lotejkJazlQR_Ncq8w5Hl1gTTWiNfH-1E/gviz/tq?sheet=工作表1';
 		  var query = new google.visualization.Query(url);
 		  query.setQuery('select *');
 		  query.send(processSheetsData);
@@ -61,7 +61,15 @@
 		
 	
 	</script>
-  
+	<style>
+	
+	 .shop_name{
+		font-size:16px;
+		font-weight:bold;
+		font-family:微軟正黑體;
+	 
+	 }
+	</style>
   
   
 </head> 
@@ -85,9 +93,10 @@
 			
 
 	
-		<div class = "card transparent z-depth-5">
-			<div class="row" id="demo"></div>
-		</div>
+
+	<div class="row" id="demo">
+	</div>
+
 			
 		
 			
@@ -131,18 +140,18 @@
 		var data = response.getDataTable();
 		var columns = data.getNumberOfColumns();
 		var rows = data.getNumberOfRows();
-
-		
 		let text = "";
 
-		var info_content=[];
 		 
 			
 		var X = decodeURIComponent(GetUrlVar('id'));
 		var i = Number(X);
-		text="";
-		for(var r=0 ; r<=rows ; r++){
-			text+='<p>'+data.getFormattedValue(r,i)+'</p>';
+		for(var r=0 ; r<rows ; r++){
+			if(data.getFormattedValue(r,i)=="zero"){
+				break;
+			}
+			text+='<div class="col s12 m6 l4 shop_name"><p>'+data.getFormattedValue(r,i)+'</p></div>';
+			
 		}
       
 
@@ -150,23 +159,10 @@
    
     
     
-    text += '<br><p>誕生日 : '+info_content[1]+'</p>';
-    text += '   <p>初配信日 : '+info_content[2]+'</p>';
-    text += '   <p>身長 : '+info_content[3]+'㎝</p>';
-    text += '   <p>單位 : '+info_content[4]+'</p>';
-    text += '   <p>繪師 : '+painter[i]+'</p>';
-    text += '   <p>粉絲名 : '+info_content[5]+'</p>';
-    text += '   <a class="btn waves-effect waves-light findYoutubebtn" href="'+info_content[8]+'" target="_blank">youtube</a>';
-    text += '   <a class="btn waves-effect waves-light findTwitterbtn" href="'+info_content[9]+'" target="_blank">twitter</a>';
-	
-    background_color="";
-    background_color+="body{background-color: "+info_content[10]+";}";
-    background_color+="nav.nav{background-color: "+info_content[11]+";}";
-    background_color+="footer.page-footer{background-color: "+info_content[11]+";}";
     
-    document.getElementById("demo").innerHTML = pic;
-	document.getElementById("content").innerHTML = text;
-    document.getElementById("background_color").innerHTML = background_color;
+    
+    document.getElementById("demo").innerHTML = text;
+
 	}
   </script>
 

@@ -150,19 +150,7 @@
 			if(data.getFormattedValue(r,i)=="zero"){
 				break;
 			}
-			if(i==0){
-				city='north_taipei';
-			}else if(i==1){
-				city='north';
-			}else if(i==2){
-				city='mid';
-			}else if(i==3){
-				city='south';
-			}else if(i==4){
-				city='west';
-			}
-			
-			text+='<div class="col s12 m6 l4 shop_name"><a href="' + city + '.html?id=' + r + '"><p>'+data.getFormattedValue(r,i)+'</p></a></div>';
+			text+='<div class="col s12 m6 l4 shop_name"><p>'+data.getFormattedValue(r,i)+'</p></div>';
 			
 		}
       

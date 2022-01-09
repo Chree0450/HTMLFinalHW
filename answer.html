@@ -2,7 +2,7 @@
 <html lang=“zh-Hant-TW”>
 
 <head>
-	<title>百大拉麵</title>
+<title>百大拉麵-訪客心得</title>
   <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -54,13 +54,36 @@
 		  // 然後讓程式讀取 https://docs.google.com/spreadsheets/d/瀏覽器網址列上的網址擷取序號部分/gviz/tq?sheet=工作表名稱
 		  // 也就是將下列的 1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk 更換成自己的檔案序號，以及最後部分指讀取哪個工作表。
 		  var url =
-			'https://docs.google.com/spreadsheets/d/1MeInYW8_W3lotejkJazlQR_Ncq8w5Hl1gTTWiNfH-1E/gviz/tq?sheet=工作表1';
+			'https://docs.google.com/spreadsheets/d/1meKUj7XtElqWs2C9ZRuRYOHs4nw74LN2y80TYgYPflc/gviz/tq?sheet=工作表1';
 		  var query = new google.visualization.Query(url);
 		  query.setQuery('select *');
 		  query.send(processSheetsData);
 		}	
 		
 	
+	</script>
+	
+	<script type="text/javascript">
+		function formresponse() {
+		 var m = document.forms["form1"]["name"].value;
+		 var d = document.forms["form1"]["experience"].value;
+		 if (m==null || m=="")
+			{
+		  alert("店名不可為空白!");
+		  return false;
+			}
+		 else if (d==null || d=="")
+			{
+		  alert("心得不可為空白!");
+		  return false;
+			}
+		 else
+			{
+		  var MySubmit = "https://docs.google.com/forms/d/e/1FAIpQLScP6SpFNAid9MQcNJ03bjZVyxWJEP_Isvwi548AVHTt2TZ9Mg/formResponse?usp=pp_url&entry.538465414=" + m + "&entry.491136029=" + d;
+		  var NewOpen = window.open(MySubmit);
+			}
+
+		}
 	</script>
 	<style>
 	
@@ -80,13 +103,9 @@
 	<div class = "iris">
 			<nav class="nav grey darken-4">
 			  <div class="nav-wrapper">
-				<a href="#" class="brand-logo center"><div id="title_name"></div></a>
+				<a href="#" class="brand-logo center"><div id="title_name">訪客心得分享區</div></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">				  
-				  <li><a href="section.html?id=0">台北市</a></li>
-				  <li><a href="section.html?id=1">北部</a></li>
-				  <li><a href="section.html?id=2">中部</a></li>
-				  <li><a href="section.html?id=3">南部</a></li>
-				  <li><a href="section.html?id=4">東部</a></li>
+				  <li><a href="pixnet_reman.html">痞客幫推薦</a></li>
 				  <li><a href="./index.html">HOME</a></li>
 				</ul>
 			  </div>
@@ -94,11 +113,48 @@
 			
 
 	
-
-	<div class="row" id="demo">
+	<div id="demo" style="text-align:center">
 	</div>
-
+	
+	<form name="form1" action="javascript:formresponse();">
+		<br>
+	   <div class="row">
+		<div class="col s12">
+		  <div class="row">
+			  <div class="col s0 m0 l2"></div>
+				<div class="input-field col s12 m12 l8">
+				  <i class="material-icons prefix">textsms</i>
+				  <input type="text" name="name" class="autocomplete">
+				  <label for="autocomplete-input">店名</label>
+				</div>
+			</div>
+		<div class="row">
+			<div class="col s0 m0 l2"></div>
+			<div class="input-field col s12 m12 l8">
+			  <i class="material-icons prefix">textsms</i>
+			  <input type="text" name="experience" class="autocomplete">
+			  <label for="autocomplete-input">心得</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s0 m0 l2"></div>
+			<a class="btn waves-effect waves-light findTwitterbtn"><input type="submit" value="Submit"></a>
+		</div> 
+		<br>
+			<div class="col s0 m0 l1"></div>
+				<div id="demo" style="text-align:center" class="col s12 m12 l10">
+				</div>
+		</div>
+	  </div>
 			
+	  
+	 </form>
+	 
+
+	
+	
+
+
 		
 			
 		
@@ -130,10 +186,7 @@
 			  </div>
 			</footer>
     </div>
-	
-    
-    
-
+  
 	<script>
 	
 	function processSheetsData(response) {
@@ -141,58 +194,36 @@
 		var data = response.getDataTable();
 		var columns = data.getNumberOfColumns();
 		var rows = data.getNumberOfRows();
-		let text = "";
+		let text = "";	 
+			
 
-		 
-			
-		var X = decodeURIComponent(GetUrlVar('id'));
-		var i = Number(X);
-		let city="";
-		let title_name="";
-		if(i==0){
-				city='north_taipei';
-				title_name="台北市";
-			}else if(i==1){
-				city='north';
-				title_name="北部";
-			}else if(i==2){
-				city='mid';
-				title_name="中部";
-			}else if(i==3){
-				city='south';
-				title_name="南部";
-			}else if(i==4){
-				city='east';
-				title_name="東部";
-			}
-		for(var r=0 ; r<rows ; r++){
-			if(data.getFormattedValue(r,i)=="zero"){
-				break;
-			}
-			text+='<div class="col s12 m6 l4 shop_name"><a href="' + city + '.html?id=' + r + '"><p>'+data.getFormattedValue(r,i)+'</p></a></div>';
-			
+
+		text+='<table class="highlight">';
+			text+='	<thead>';
+			text+='		<tr>';
+			text+='			<th>店名</th>';
+			text+='			<th>心得</th>';
+			text+='		</tr>';
+			text+='	</thead>';
+			text+='	<tbody>';
+		for(var r=rows-1 ; r>=rows-5 ; r--){
+			text+='  <tr>';
+			text+='		<td>'+data.getFormattedValue(r,1)+'</td>';
+			text+='		<td>'+data.getFormattedValue(r,2)+'</td>';
+			text+='  </tr>';
 		}
-      
+		text+='	</tbody>';
+		text+='</table>';
 
-	
-   
+		
+		
     
     
     
-    
-    document.getElementById("demo").innerHTML = text;
-	document.getElementById("title_name").innerHTML = title_name;
+		document.getElementById("demo").innerHTML = text;
+
 	}
   </script>
-
-  
-  
-  
-  
-  
-  
-  
-
 
 </body>
 

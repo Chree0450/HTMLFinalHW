@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang=“zh-Hant-TW”>
+  <head>
+  <title>百大拉麵-痞客幫推薦</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
+	
+
+	<script>
+		let out = "";
+	  for(l=1;l<=5;l++){
+			var urlmy="https://emma.pixnet.cc/mainpage/blog/categories/latest/26?page="+l+"&per_page=100&api_version=2&format=json";
+		  myft(urlmy);
+	  }
+	  function myft(urlm){
+		var xmlhttp = new XMLHttpRequest();
+		var url = urlm;
+
+		xmlhttp.onreadystatechange = function() {
+		  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var myArr = JSON.parse(xmlhttp.responseText);
+			myFunction(myArr);
+		  }
+		}
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+		}
+		
+		
+		function myFunction(arr) {
+			var data = arr.articles;
+			
+			var i;
+			for (i = 0; i < data.length; i++) {
+		
+			let sw=0;
+			for (j = 0; j < data[i].tags.length; j++) {
+				var ttag=data[i].tags[j].tag;
+						for(k=0;k<=ttag.length;k++){
+								if(ttag[k]=="拉"&ttag[k+1]=="麵"){sw=1;}
+			  }
+					}
+		  if(sw==0){continue;}
+				
+				
+			out += '<div class="col s12 m12 l12">';
+			out += ' <div class="card  horizontal">';
+			out += '  <div class="card-image">';
+			
+		
+				if ( data[i].thumb != "" ) out += '    <img src="' + data[i].thumb + '" width="100%">';
+				out += '  </div>';
+				out += '  <div class="card-stacked">';
+				out += '  <div class="card-content">';
+				if ( data[i].title != "" ) out += '<span class="card-title" id="card title">' + data[i].title + '</span>';
+				out += '  </div>';
+				out += '  <div class="card-action">';
+				out += '    <a href="' + data[i].link + '" target="_blank">More</a>';
+				out += '  </div>';
+				out += '  </div>';
+				out += ' </div>';
+				out += '</div>';
+		 
+			}
+			document.getElementById("pixnet-stuff").innerHTML = out;
+		}
+	  
+	</script>
+
+  </head>
+
+  <body>
+	
+			<nav class="nav grey darken-4">
+			  <div class="nav-wrapper">
+				<a href="#" class="brand-logo center">痞客幫推薦</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+				  <li><a href="answer.html">訪客心得</a></li>
+				  <li><a href="./index.html">HOME</a></li>
+				</ul>
+			  </div>
+			</nav>
+
+		<div class = "card transparent z-depth-5">
+			<div class="row" id="pixnet-stuff"></div>
+		</div>
+			
+    <footer class="page-footer grey darken-4">
+			  <div class="container">
+				<div class="row">
+				  <div class="col l6 s12">
+					<h5><a class="white-text" href="https://www.facebook.com/groups/RamenTW" target="_blank">內容來自台灣拉麵愛好會(台湾ラーメン愛好会 Taiwan Ramen Club)</a></h5>
+				  </div>
+				  <div class="col l4 offset-l2 s12">
+					<h5 class="white-text">更多拉麵粉專</h5>
+					<ul>
+					  <li><a class="white-text" href="https://www.facebook.com/ramenchizu/" target="_blank">拉麵地圖（ラーメン地図）</a></li>
+					  <li><a class="white-text" href="https://www.facebook.com/RAMENUWASA" target="_blank">拉麵.etc 謠指部</a></li>
+					  <li><a class="white-text" href="https://www.facebook.com/theKnightofRamen/" target="_blank">【呷麺騎士】発福誌</a></li>
+					  <li><a class="white-text" href="https://www.facebook.com/taiwanmenou/" target="_blank">台湾麺王グルメ道</a></li>
+					</ul>
+				  </div>
+				</div>
+			  </div>
+			  <div class="footer-copyright">
+				<div class="container">
+				Copyright © 2021
+				</div>
+			  </div>
+			</footer>
+
+	
+  </body>
+</html>

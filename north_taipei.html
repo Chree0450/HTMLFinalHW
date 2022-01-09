@@ -2,7 +2,7 @@
 <html lang=“zh-Hant-TW”>
 
 <head>
-	<title>百大拉麵</title>
+	<title>百大拉麵-台北市</title>
   <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -54,7 +54,7 @@
 		  // 然後讓程式讀取 https://docs.google.com/spreadsheets/d/瀏覽器網址列上的網址擷取序號部分/gviz/tq?sheet=工作表名稱
 		  // 也就是將下列的 1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk 更換成自己的檔案序號，以及最後部分指讀取哪個工作表。
 		  var url =
-			'https://docs.google.com/spreadsheets/d/1MeInYW8_W3lotejkJazlQR_Ncq8w5Hl1gTTWiNfH-1E/gviz/tq?sheet=工作表1';
+			'https://docs.google.com/spreadsheets/d/1gC6RZvCEh3EbkSy-aedT2AUcPEeQh5um1cGt_BjzBTg/gviz/tq?sheet=工作表1';
 		  var query = new google.visualization.Query(url);
 		  query.setQuery('select *');
 		  query.send(processSheetsData);
@@ -70,6 +70,64 @@
 		font-family:微軟正黑體;
 	 
 	 }
+	 .content_text{
+		font-size:20px;
+		font-family:微軟正黑體;
+	 }
+	 
+      
+      
+      .findTwitterbtn{
+          background-color: #1DA1F2
+      }
+      .findTwitterbtn.btn:hover {
+            background-color: #0b7bc1
+      }
+      .findTwitterbtn.btn:active {
+          background-color: #1DA1F2
+       }
+      .findTwitterbtn.btn:visited {
+          background-color: #1DA1F2
+       }
+	   
+	   .findFacebookbtn{
+          background-color: #4267B2
+      }
+      .findFacebookbtn.btn:hover {
+            background-color: #172c57
+      }
+      .findFacebookbtn.btn:active {
+          background-color: #4267B2
+       }
+      .findFacebookbtn.btn:visited {
+          background-color: #4267B2
+       }
+	   
+	   .findInstagrambtn{
+          background-color: #E1306C
+      }
+      .findInstagrambtn.btn:hover {
+            background-color: #C13584
+      }
+      .findInstagrambtn.btn:active {
+          background-color: #E1306C
+       }
+      .findInstagrambtn.btn:visited {
+          background-color: #E1306C
+       }
+	   
+	   .findwebbtn{
+          background-color: #212121
+      }
+      .findwebbtn.btn:hover {
+            background-color: #000000
+      }
+      .findwebbtn.btn:active {
+          background-color: #212121
+       }
+      .findwebbtn.btn:visited {
+          background-color: #212121
+       }
 	</style>
   
   
@@ -80,7 +138,7 @@
 	<div class = "iris">
 			<nav class="nav grey darken-4">
 			  <div class="nav-wrapper">
-				<a href="#" class="brand-logo center"><div id="title_name"></div></a>
+				<a href="#" class="brand-logo center"><div id="shop_name"></div></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">				  
 				  <li><a href="section.html?id=0">台北市</a></li>
 				  <li><a href="section.html?id=1">北部</a></li>
@@ -95,9 +153,16 @@
 
 	
 
-	<div class="row" id="demo">
+	<div class="row">
+		<div class="col s0 m0 l2"></div>
+		<div style="text-align:center" class="col s12 m12 l8 content_text" id="content"></div>	
 	</div>
-
+	<div>
+	<div style="text-align:center" id="pic">
+	</div>
+	<div style="text-align:center" id="map">
+	</div>
+					
 			
 		
 			
@@ -147,41 +212,49 @@
 			
 		var X = decodeURIComponent(GetUrlVar('id'));
 		var i = Number(X);
-		let city="";
-		let title_name="";
-		if(i==0){
-				city='north_taipei';
-				title_name="台北市";
-			}else if(i==1){
-				city='north';
-				title_name="北部";
-			}else if(i==2){
-				city='mid';
-				title_name="中部";
-			}else if(i==3){
-				city='south';
-				title_name="南部";
-			}else if(i==4){
-				city='east';
-				title_name="東部";
-			}
-		for(var r=0 ; r<rows ; r++){
+	/*
+		for(var l=0 ; r<rows ; r++){
 			if(data.getFormattedValue(r,i)=="zero"){
 				break;
 			}
-			text+='<div class="col s12 m6 l4 shop_name"><a href="' + city + '.html?id=' + r + '"><p>'+data.getFormattedValue(r,i)+'</p></a></div>';
+			text+='<div class="col s12 m6 l4 shop_name"><p>'+data.getFormattedValue(r,i)+'</p></div>';
 			
 		}
-      
+		*/
+		let shop_name=data.getFormattedValue(i,0);
+		let map_text='<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1dn13gu4rBfG9WLzx6DqjqgVuBaMAqCUP&ehbc=2E312F&ll=' + data.getFormattedValue(i,1) + '%2C' + data.getFormattedValue(i,2) + '&z=18" width="80%" height="500"></iframe>';
+		let content=data.getFormattedValue(i,3);
+		let sale_type=data.getFormattedValue(i,4);
+		let sale_time=data.getFormattedValue(i,5);
 
-	
-   
+		
+
+		text += '<br><p>'+content+'</p>';
+		text += '   <p>類型 : <br>'+sale_type+'</p>';
+		text += '   <p>營業時間 : <br>'+sale_time+'</p>';
+		if(data.getFormattedValue(i,6)!="zero"){
+			text += '   <a class="btn waves-effect waves-light findwebbtn" href="'+data.getFormattedValue(i,6)+'" target="_blank">官網</a>';
+		}
+		if(data.getFormattedValue(i,7)!="zero"){
+			text += '   <a class="btn waves-effect waves-light findFacebookbtn" href="'+data.getFormattedValue(i,7)+'" target="_blank">Facebook</a>';
+		}
+		if(data.getFormattedValue(i,8)!="zero"){
+			text += '   <a class="btn waves-effect waves-light findInstagrambtn" href="'+data.getFormattedValue(i,8)+'" target="_blank">Instagram</a>';
+		}
+		if(data.getFormattedValue(i,9)!="zero"){
+			text += '   <a class="btn waves-effect waves-light findTwitterbtn" href="'+data.getFormattedValue(i,9)+'" target="_blank">Twitter</a>';
+		}
+		let pic_text='<img src="images/Taipei/'+i+'.jpg" width="60%">';
+
+		
+		
     
     
     
-    
-    document.getElementById("demo").innerHTML = text;
-	document.getElementById("title_name").innerHTML = title_name;
+		document.getElementById("content").innerHTML = text;
+		document.getElementById("shop_name").innerHTML = shop_name;
+		document.getElementById("pic").innerHTML = pic_text;
+		document.getElementById("map").innerHTML = map_text;
 	}
   </script>
 

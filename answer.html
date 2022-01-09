@@ -81,9 +81,12 @@
 			{
 		  var MySubmit = "https://docs.google.com/forms/d/e/1FAIpQLScP6SpFNAid9MQcNJ03bjZVyxWJEP_Isvwi548AVHTt2TZ9Mg/formResponse?usp=pp_url&entry.538465414=" + m + "&entry.491136029=" + d;
 		  var NewOpen = window.open(MySubmit);
+		  
 			}
 
 		}
+		
+		function webreload(){history.go(0);}
 	</script>
 	<style>
 	
@@ -116,7 +119,7 @@
 	<div id="demo" style="text-align:center">
 	</div>
 	
-	<form name="form1" action="javascript:formresponse();">
+	<form name="form1" action="javascript:formresponse();javascript:setTimeout(function (){webreload();}, 1000);">
 		<br>
 	   <div class="row">
 		<div class="col s12">
